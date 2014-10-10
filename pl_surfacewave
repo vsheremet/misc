@@ -6,10 +6,14 @@ import matplotlib.pyplot as plt
 g=9.81 # m/s**2
 sigma=0.074 # N/m
 rho=1000. # kg/m**3
+H=0.5
+U=0.05
+
 
 lamb=np.arange(0.001,1.,0.001)
 k=2.*np.pi/lamb
 omega=np.sqrt(g*k+sigma/rho*k**3)
+omega=np.sqrt(g*k+sigma/rho*k**3)*np.tanh(k*H)+k*U
 T=2.*np.pi/omega
 
 Cp=omega/k
@@ -42,9 +46,9 @@ plt.figure()
 plt.plot(lamb,Cp,'r-',lambCpmin,Cpmin,'b*')
 plt.xlabel('lambda, m')
 plt.ylabel('Cp, m/s')
-plt.show()t=np.arange(0.,60.,1./16)
-H=0.5 # depth
+plt.show()
 
+t=np.arange(0.,60.,1./16)
 
 k1=2.
 k=k1*1.
